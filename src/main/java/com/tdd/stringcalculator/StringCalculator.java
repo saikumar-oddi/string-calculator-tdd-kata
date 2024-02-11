@@ -15,10 +15,22 @@ public class StringCalculator {
         return sumWithoutNegatives(nums);
     }
 
-    private String[] splitNumbers(String numbers, String delimiter) {
+    private String[] splitNumbers(String numbers, String defaultDelimiter) {
         if (numbers.isEmpty()) {
             return new String[]{};
         }
+
+        String delimiter = defaultDelimiter;
+
+        // Check for custom delimiter syntax
+        if (numbers.startsWith("//")) {
+            int delimiterEndIndex = numbers.indexOf("\n");
+            if (delimiterEndIndex != -1) {
+                delimiter = numbers.substring(2, delimiterEndIndex);
+                numbers = numbers.substring(delimiterEndIndex + 1);
+            }
+        }
+
         // Replace new lines after delimiter with an empty string
         numbers = numbers.replaceAll(Pattern.quote(delimiter) + "\n", delimiter);
 

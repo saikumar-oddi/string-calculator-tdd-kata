@@ -38,6 +38,14 @@ public class StringCalculatorTest {
     public void testGetCalledCount() {
         StringCalculator calculator = new StringCalculator();
         calculator.Add("1,2");
-        assertEquals(1, calculator.GetCalledCount());
+        calculator.Add("//;\n1;2");
+        assertEquals(2, calculator.GetCalledCount());
     }
+
+    @Test
+    public void testCustomDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(3, calculator.Add("//;\n1;2"));
+    }
+
 }
