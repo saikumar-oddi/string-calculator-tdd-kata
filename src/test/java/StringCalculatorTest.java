@@ -52,9 +52,13 @@ public class StringCalculatorTest {
     public void i_testMultipleDelimitersWithLengthGreaterThanOne() {
         assertEquals(6, StringCalculator.add("//[**][%%]\n1**2%%3"));
     }
+    @Test
+    public void j_testNumbersGreaterThan1000ShouldBeIgnored() {
+        assertEquals(2, StringCalculator.add("2,1001"));
+    }
 
     @Test
-    public void j_testGetCalledCount() {
-        assertEquals(9, StringCalculator.getCalledCount());
+    public void k_testGetCalledCount() {
+        assertEquals(10, StringCalculator.getCalledCount());
     }
 }
